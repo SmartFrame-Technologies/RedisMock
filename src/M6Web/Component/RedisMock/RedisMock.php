@@ -77,7 +77,7 @@ class RedisMock
         return $this->returnPipedInfo(self::$dataValues[$this->storage][$key]);
     }
 
-    public function set($key, $value, $seconds = null)
+    public function set($key, $value, $seconds = null): bool
     {
         if (\is_array($seconds)) {
             /**
@@ -109,7 +109,7 @@ class RedisMock
             self::$dataTtl[$this->storage][$key] = time() + $seconds;
         }
 
-        return $this->returnPipedInfo('OK');
+        return true;
     }
 
     //mset/mget (built on set and get above)
